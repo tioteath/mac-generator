@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then 
+  echo "Interface name was not specified" >&2
+  exit 1
+fi
+
+PATH=/sbin:/bin
+MAC=`mac-generator`
+ip link set dev $1 address $MAC || echo "Fail to set mac: $MAC"
+
